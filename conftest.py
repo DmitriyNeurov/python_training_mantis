@@ -21,7 +21,7 @@ def load_config(file):
 
 @pytest.fixture(scope="session")
 def config(request):
-    return load_config(request.config.getoption("--target"))['web']
+    return load_config(request.config.getoption("--target"))
 
 
 @pytest.fixture
@@ -33,7 +33,7 @@ def app(request, config):
     return fixture
 
 @pytest.fixture(scope="session", autouse=True)
-def configure_server(request):
+def configure_server(request, config):
     install_server_configuration(config['ftp']['host'], config['ftp']['username'], config['ftp']['password'])
     def fin():
         restore_server_configuration(config['ftp']['host'], config['ftp']['username'], config['ftp']['password'])
