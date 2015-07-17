@@ -23,14 +23,14 @@ class ProjectHelper:
         wd = self.app.wd
         self.open_Manage_Projects()
         wd.find_element_by_css_selector("td.form-title > form > input.button-small").click()
-        self.change_field_value("name", "Python")
+        self.change_field_value("name", project)
         wd.find_element_by_css_selector("input.button").click()
         self.project_cash = None
 
-    def delete_project(self):
+    def delete_project(self, project):
         wd = self.app.wd
         self.open_Manage_Projects()
-        wd.find_element_by_link_text("Python").click()
+        wd.find_element_by_link_text(project.name).click()
         wd.find_element_by_css_selector("form > input.button").click()
         wd.find_element_by_css_selector("input.button").click()
         self.project_cash = None
